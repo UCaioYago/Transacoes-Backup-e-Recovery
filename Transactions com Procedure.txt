@@ -1,0 +1,43 @@
+DELIMITER //
+
+CREATE PROCEDURE my_procedure()
+BEGIN
+    -- variáveis
+    DECLARE exit_handler BOOLEAN DEFAULT FALSE;
+    DECLARE rollback_handler BOOLEAN DEFAULT FALSE;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET exit_handler = TRUE;
+
+    -- Desabilitando o autocommit
+    SET autocommit = 0;
+
+    -- Iniciando a transação
+    START TRANSACTION;
+
+    -- Definindo o savepoint para o rollback parcial (opcional)
+    SAVEPOINT savepoint1;
+
+    -- instruções
+    INSERT INTO tabela (coluna1, coluna2) VALUES (valor1, valor2);
+    UPDATE tabela SET coluna1 = novo_valor WHERE condição;
+    DELETE FROM tabela WHERE condição;
+    -- E assim por diante...
+
+    -- Verificando se houve problemas na execução
+    IF exit_handler THEN
+        -- Desfazendo até o savepoint que seria um rollback parcial
+        IF rollback_handler THEN
+            ROLLBACK TO savepoint1;
+	-- Se não, vai Desfazer a transação inteira que seria um rollback total
+        ELSE
+            ROLLBACK;
+        END IF;
+    ELSE
+        -- Confirmando a transação
+        COMMIT;
+    END IF;
+
+    -- Reabilitando o autocommit
+    SET autocommit = 1;
+END //
+
+DELIMITER ;
