@@ -1,0 +1,8 @@
+-- Comando para fazer Backup
+mysqldump -u root -p ecommerce backup.sql 
+
+-- Restaurando o backup do arquivo backup.sql
+mysql -u root -p ecommerce backup.sql
+
+-- Para fazer backup de eventos, procedures, outras funções e triggers
+mysqldump -u root -p --routines ecommerce backup.sql
