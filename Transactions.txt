@@ -1,0 +1,19 @@
+-- Desabilitar o autocommit
+SET autocommit = 0;
+
+-- Iniciando
+START TRANSACTION;
+
+-- instruções SQL
+INSERT INTO tabela (coluna1, coluna2) VALUES (valor1, valor2);
+UPDATE tabela SET coluna1 = novo_valor WHERE condição;
+DELETE FROM tabela WHERE condição;
+
+-- Confirmando
+COMMIT;
+
+-- Desfazer a transação (rollback) em caso de erro
+-- ROLLBACK;
+
+-- Reabilitar o autocommit
+SET autocommit = 1;
