@@ -1,0 +1,10 @@
+1 - escreva o seguinte codigo no mysql caso esqueça seu usuario igual eu esqueci
+
+SELECT user FROM mysql.user;
+
+2 - Realize todos os comandos de Backup e Recovery na pasta Bin do mysql, o meu é:
+
+C:\Program Files\MySQL\MySQL Server 8.4\bin
+
+3 - Faça os comandos de Backup e Recovery no CMD, caso faça no Power Shell terá algumas divergencias para leitura dos comandos
+
