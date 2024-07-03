@@ -8,3 +8,4 @@ C:\Program Files\MySQL\MySQL Server 8.4\bin
 
 3 - Faça os comandos de Backup e Recovery no CMD, caso faça no Power Shell terá algumas divergencias para leitura dos comandos
 
+4 - Se você nao especificar o caminho, provavelmente o backup estará em C: Program data >> Mysql, pasta oculta
